@@ -1,0 +1,35 @@
+ALGORITMO PARA MOVIMENTAÇÃO DA GARRA
+O SISTEMA DE COORDENADAS UTILIZADO SERÁ IGUAL AO CARTESIANO, COM A EXTREMIDADE ESQUERDA INFERIOR SENDO O PONTO (0, 0), E SENTIDO POSITIVO PARA CIMA E PARA DIREITA.
+
+INIT
+----
+1. Detectar a posição da garra através do match template
+2. Detectar a posição de cada frasco através de suas cores pré-definidas (azul, verde, amarelo, vermelho, laranja)
+3. Receber comando do usuário (cor)
+
+MOVIMENTAÇÃO EIXO X
+-------------------
+4. Enquanto |x_garra - x_frasco| > e_1 (aqui, 'e_1' é um erro tolerável entre as posição):
+    5. Detectar a posição da garra através do match template
+    6. Detectar a posição do frasco definido pelo usuário
+    7. Calcular diferença entre a posição da garra e do frasco desejado (x_garra - x_frasco)
+        7.1 Se diferença for > 0; velocidade negativa (garra ir para esquerda)
+        7.2 Se diferença for < 0; velocidade positiva (garra ir para direita)
+        7.3 Definir magnitude da velocidade proporcionalmente à diferença entre as posições (quanto maior a diferença, maior a velocidade - coeficiente Kp)
+
+MOVIMENTAÇÃO EIXO Y
+-------------------
+8. Enquanto |y_garra - y_frasco| > e_2 + t (aqui, 'e_2' é um erro tolerável entre as posições e 't' é a translação base entre o centro do frasco e seu gargalo):
+    9. Detectar a posição da garra através do match template
+    10. Detectar a posição do frasco definido pelo usuário
+    11. Calcular diferença entre a posição da garra e do frasco desejado (y_garra - y_frasco)
+    12. Nesse caso, a diferença deverá sempre ser positiva, visto que o a garra deverá estar sempre acima do frasco.
+    13. Descer a garra a uma velocidade constante e baixa, de preferência menor do que a velocidade de processamento da imagem, para evitar que a garra bata no frasco.
+
+AGARRAR O FRASCO
+----------------
+14. Enquanto a resistência nos "dedos" da garra for menor que um determinado valor:
+    15. Fechar ambos os "dedos" ao mesmo tempo a uma velocidade constante e baixa, de preferência menor do que a velocidade de medição da resistência, para evitar que a garra esmague o frasco.
+
+
+OBS: se em algum momento a posição do frasco desejado não for encontrado, interromper movimentação da garra.
